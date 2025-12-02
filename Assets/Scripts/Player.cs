@@ -11,11 +11,13 @@ public class Player : MonoBehaviour
     Rigidbody2D rigid;
     ArrowGenerator arrow;
     Animator animator;
+    PlayerHP HPcontroller;
     void Start()
     {
         rigid = GetComponent<Rigidbody2D>();
         arrow = GetComponent<ArrowGenerator>();
         animator = GetComponent<Animator>();
+        HPcontroller = GetComponent <PlayerHP > ();
     }
     void Update()
     {
@@ -58,6 +60,7 @@ public class Player : MonoBehaviour
             transform.localScale = new Vector3(key, 3, 3);
         }
     }
+ 
 
     void Jump()
     {
@@ -67,6 +70,9 @@ public class Player : MonoBehaviour
         animator.SetBool("isflat", isflat);
         rigid.linearVelocity = Vector2.zero; 
         rigid.AddForce(new Vector2(0, jumpForce));
+
+        //아래는 HP 테스트용
+        HPcontroller.TakeDamage(20);
     }
 
     void Attack()
@@ -74,11 +80,10 @@ public class Player : MonoBehaviour
         arrow.ArrowGenerate();
     }
 
-
     // 무한 점프 방지, 바닥과 닿아야 점프 가능
     void OnCollisionEnter2D(Collision2D collision) 
     {
-        if (collision.gameObject.tag == "Flap")
+        if (collision.gameObject.tag == "Flat")
         {
             isflat = true;
             animator.SetBool("isflat", isflat);

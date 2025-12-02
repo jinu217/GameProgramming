@@ -10,7 +10,6 @@ public class PlayerHP : MonoBehaviour
     [Header("플레이어 HP UI")]
     public Slider hpSlider;
     public TextMeshProUGUI hpText;
-
     void Start()
     {
         playerHP = GameManager.Instance.playerHP;
@@ -44,6 +43,24 @@ public class PlayerHP : MonoBehaviour
         if (hpText != null)
         {
             hpText.text = playerHP + "/" + maxHP;
+        }
+    }
+
+
+    // 데미지 받았을 때 로직
+    public void TakeDamage(int Damage)
+    {
+        if (GameManager.Instance.playerHP < 0)
+        {
+            GameManager.Instance.playerHP = 0;
+        }
+        if (GameManager.Instance.playerHP == 0)
+        {
+            return;
+        }        
+        if (GameManager.Instance.playerHP > 0)
+        {
+            GameManager.Instance.playerHP -= Damage;
         }
     }
 

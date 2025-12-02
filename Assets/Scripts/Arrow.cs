@@ -1,4 +1,4 @@
-using Unity.VisualScripting;
+ï»¿using Unity.VisualScripting;
 using UnityEngine;
 
 public class Arrow : MonoBehaviour
@@ -9,7 +9,7 @@ public class Arrow : MonoBehaviour
     {
         rigid = GetComponent<Rigidbody2D>();
 
-        //È­»ì ¹ß»ç ¹æÇâ
+        //í™”ì‚´ ë°œì‚¬ ë°©í–¥
         if (transform.localScale.x < 0)
         {
             rigid.AddForce(-transform.right * arrowSpeed, ForceMode2D.Impulse);

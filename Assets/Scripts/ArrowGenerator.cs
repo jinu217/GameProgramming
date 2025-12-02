@@ -1,23 +1,23 @@
-using JetBrains.Annotations;
+ï»¿using JetBrains.Annotations;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class ArrowGenerator : MonoBehaviour
 {
-    // È­»ì »ı¼º
+    // í™”ì‚´ ìƒì„±
     public GameObject arrowPrefab;
     public GameObject Player;
 
      void Start()
     {
-        // À§Ä¡ ÇÃ·¹ÀÌ¾î À§Ä¡
+        // ìœ„ì¹˜ í”Œë ˆì´ì–´ ìœ„ì¹˜
         Player = GameObject.Find("Player");
     }
     public void ArrowGenerate()
     {
         GameObject instant = Instantiate(arrowPrefab, Player.transform.position, Player.transform.rotation);
 
-        // ¿ŞÂÊÀÏ ¶§ »ı¼º ½Ã Scale xÃàÀ» À½¼ö·Î º¯°æ
+        // ì™¼ìª½ì¼ ë•Œ ìƒì„± ì‹œ Scale xì¶•ì„ ìŒìˆ˜ë¡œ ë³€ê²½
         if(Player.transform.localScale.x < 0)
         {
             Vector3 scale = instant.transform.localScale;

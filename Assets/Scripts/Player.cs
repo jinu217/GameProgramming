@@ -1,13 +1,13 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    // º¯¼ö ¼±¾ğ
+    // ë³€ìˆ˜ ì„ ì–¸
     public float jumpForce = 100.0f;
     public float walkForce = 2.0f;
     bool isflat = false; 
 
-    // ÄÄÆ÷³ÍÆ® ¼±¾ğ
+    // ì»´í¬ë„ŒíŠ¸ ì„ ì–¸
     Rigidbody2D rigid;
     ArrowGenerator arrow;
     Animator animator;
@@ -31,29 +31,31 @@ public class Player : MonoBehaviour
         //Debug.Log(isflat);
     }
 
-    //ÀÌµ¿ ÇÔ¼öµé
+    //ì´ë™ í•¨ìˆ˜ë“¤
     void Move()
     {
         float key = 0;
         float x = Input.GetAxisRaw("Horizontal");
-        // Debug.Log("x°ª " + x);
-        key = x;
+        // Debug.Log("xê°’ " + x);
+
+        //Player local Scaleì˜ ì—°ë™
+        key = x * 3;
         if(x != 0)
         {
             rigid.linearVelocity = new Vector2(x * walkForce, rigid.linearVelocity.y);
-            // °È±â ¾Ö´Ï¸ŞÀÌ¼Ç
+            // ê±·ê¸° ì• ë‹ˆë©”ì´ì…˜
             animator.SetInteger("State", 1);           
         }
         else
         {
-            // ¸ØÃâ ¶§ idel ¾Ö´Ï¸ŞÀÌ¼Ç
+            // ë©ˆì¶œ ë•Œ idel ì• ë‹ˆë©”ì´ì…˜
             animator.SetInteger("State", 0);
         }       
 
-        // ½ºÇÁ·¹ÀÌÆ® ÁÂ¿ì ¹İÀü
+        // ìŠ¤í”„ë ˆì´íŠ¸ ì¢Œìš° ë°˜ì „
         if(key != 0)
         {
-            transform.localScale = new Vector3(key, 1, 1);
+            transform.localScale = new Vector3(key, 3, 3);
         }
     }
 
@@ -73,7 +75,7 @@ public class Player : MonoBehaviour
     }
 
 
-    // ¹«ÇÑ Á¡ÇÁ ¹æÁö, ¹Ù´Ú°ú ´ê¾Æ¾ß Á¡ÇÁ °¡´É
+    // ë¬´í•œ ì í”„ ë°©ì§€, ë°”ë‹¥ê³¼ ë‹¿ì•„ì•¼ ì í”„ ê°€ëŠ¥
     void OnCollisionEnter2D(Collision2D collision) 
     {
         if (collision.gameObject.tag == "Flap")

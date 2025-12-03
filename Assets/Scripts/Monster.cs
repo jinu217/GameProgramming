@@ -7,7 +7,7 @@ public class Monster : MonoBehaviour
 
     Animator animator;
     Rigidbody2D rigid;
-
+    PlayerHP playerHP;
   void Start()
     {
         animator = GetComponent<Animator>();
@@ -56,4 +56,17 @@ public class Monster : MonoBehaviour
         nextmove = Random.Range(-1, 2);
         Invoke("Think", 5);
     }
+
+    void OnCollisionStay2D(Collision2D collision)
+    {
+        // 접촉한 Layer가 Player인지 확인
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
+        {
+            Player player = collision.gameObject.GetComponent<Player>();
+            // 피격 방향 Player 위치 - monster 위치 뺀 값이 0보다 크면 1,  0보다 작으면 -1  
+            int dirc = (collision.transform.position.x - transform.position.x > 0 ? 1 : -1);
+            player.OnHit(10, dirc);
+        }
+    }
+
 }

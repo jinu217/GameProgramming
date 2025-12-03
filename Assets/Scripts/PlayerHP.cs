@@ -63,5 +63,4 @@ public class PlayerHP : MonoBehaviour
             GameManager.Instance.playerHP -= Damage;
         }
     }
-
 }

@@ -4,8 +4,8 @@
 TagManager:
   serializedVersion: 3
   tags:
-  - Flap
   - Flat
+  - Monster
   layers:
   - Default
   - TransparentFX
@@ -14,8 +14,8 @@ TagManager:
   - Water
   - UI
   - Flat
-  - 
-  - 
+  - Player
+  - PlayerDamaged
   - 
   - 
   - 

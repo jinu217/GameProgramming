@@ -9,15 +9,18 @@ public class Player : MonoBehaviour
 
     // 컴포넌트 선언
     Rigidbody2D rigid;
+    PlayerHP playerHP;
+    SpriteRenderer spriteRenderer;
     ArrowGenerator arrow;
     Animator animator;
-    PlayerHP HPcontroller;
+
     void Start()
     {
         rigid = GetComponent<Rigidbody2D>();
         arrow = GetComponent<ArrowGenerator>();
         animator = GetComponent<Animator>();
-        HPcontroller = GetComponent <PlayerHP > ();
+        playerHP = GetComponent <PlayerHP > ();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
     void Update()
     {
@@ -60,24 +63,40 @@ public class Player : MonoBehaviour
             transform.localScale = new Vector3(key, 3, 3);
         }
     }
- 
-
     void Jump()
     {
-
         isflat = false;
         animator.SetTrigger("is_jumping");
         animator.SetBool("isflat", isflat);
         rigid.linearVelocity = Vector2.zero; 
         rigid.AddForce(new Vector2(0, jumpForce));
-
-        //아래는 HP 테스트용
-        HPcontroller.TakeDamage(20);
     }
 
     void Attack()
     {
         arrow.ArrowGenerate();
+    }
+
+    public void OnHit(int damage, int dir)
+    {
+        // 데미지 실제 적용
+        playerHP.TakeDamage(damage);
+
+        // Player 레이어를 바꿔 충돌 방지 색 변경
+        gameObject.layer = 8;
+        spriteRenderer.color = new Color(1, 1, 1, 0.4f);
+        // dir 방향에 따라 튕김 
+        
+        rigid.AddForce(new Vector2(dir, 1) * 2, ForceMode2D.Impulse);
+        Invoke("OffDamaged", 3);
+    }
+
+
+    // 무적 해제 함수
+    void OffDamaged()
+    {
+        gameObject.layer = 7;
+        spriteRenderer.color = new Color(1, 1, 1, 1);
     }
 
     // 무한 점프 방지, 바닥과 닿아야 점프 가능

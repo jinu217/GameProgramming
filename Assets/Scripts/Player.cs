@@ -66,8 +66,9 @@ public class Player : MonoBehaviour
     void Jump()
     {
         isflat = false;
-        animator.SetTrigger("is_jumping");
         animator.SetBool("isflat", isflat);
+        animator.SetTrigger("is_jumping");
+        
         rigid.linearVelocity = Vector2.zero; 
         rigid.AddForce(new Vector2(0, jumpForce));
     }
@@ -77,7 +78,7 @@ public class Player : MonoBehaviour
         arrow.ArrowGenerate();
     }
 
-    public void OnHit(int damage, int dir)
+    public void PlayerOnHit(int damage, int dir)
     {
         // 데미지 실제 적용
         playerHP.TakeDamage(damage);

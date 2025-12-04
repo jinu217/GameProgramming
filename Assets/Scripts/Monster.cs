@@ -5,6 +5,7 @@ public class Monster : MonoBehaviour
 {
     public int nextmove;
 
+    MonsterHP monsterHP;
     Animator animator;
     Rigidbody2D rigid;
     PlayerHP playerHP;
@@ -12,6 +13,7 @@ public class Monster : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         rigid = GetComponent<Rigidbody2D>();
+        monsterHP = GetComponent<MonsterHP>();
 
         // 5초뒤 움직일 값 설정
         Invoke("Think", 5);
@@ -42,7 +44,7 @@ public class Monster : MonoBehaviour
 
             // 애니메이션 설정 및 좌우 반전
             animator.SetInteger("State", 1);
-            transform.localScale = new Vector3(-nextmove, 1, 1);
+            transform.localScale = new Vector3(-nextmove * 3, 3, 3);
         }
         else
         {
@@ -57,6 +59,17 @@ public class Monster : MonoBehaviour
         Invoke("Think", 5);
     }
 
+    public void MonsterOnHit(int damage, int dir)
+    {
+        // 데미지 실제 적용
+        monsterHP.TakeDamage(damage);
+
+        //튕기는 방향
+        rigid.AddForce(new Vector2(dir, 0.2f) * 2, ForceMode2D.Impulse);
+    }
+
+
+
     void OnCollisionStay2D(Collision2D collision)
     {
         // 접촉한 Layer가 Player인지 확인
@@ -65,8 +78,7 @@ public class Monster : MonoBehaviour
             Player player = collision.gameObject.GetComponent<Player>();
             // 피격 방향 Player 위치 - monster 위치 뺀 값이 0보다 크면 1,  0보다 작으면 -1  
             int dirc = (collision.transform.position.x - transform.position.x > 0 ? 1 : -1);
-            player.OnHit(10, dirc);
+            player.PlayerOnHit(GameManager.Instance.monsterDamage, dirc);
         }
     }
-
 }

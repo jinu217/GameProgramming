@@ -15,7 +15,8 @@ public class ArrowGenerator : MonoBehaviour
     }
     public void ArrowGenerate()
     {
-        GameObject instant = Instantiate(arrowPrefab, Player.transform.position, Player.transform.rotation);
+        Vector3 posit_temp = new Vector3(0, -0.2f, 0); 
+        GameObject instant = Instantiate(arrowPrefab, Player.transform.position + posit_temp, Player.transform.rotation);
 
         // 왼쪽일 때 생성 시 Scale x축을 음수로 변경
         if(Player.transform.localScale.x < 0)

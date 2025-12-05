@@ -24,6 +24,15 @@ public class Player : MonoBehaviour
     }
     void Update()
     {
+        // gameclear 시 움직임 정지
+        if (GameManager.Instance != null && GameManager.Instance.isGameClear)
+        {
+            Rigidbody2D rb = GetComponent<Rigidbody2D>();
+            if (rb != null) rb.linearVelocity = Vector2.zero;
+
+            return;
+        }
+
         Move();        
         if (Input.GetButtonDown("Jump") && isflat)
         {

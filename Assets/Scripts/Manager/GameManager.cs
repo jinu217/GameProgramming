@@ -16,7 +16,9 @@ public class GameManager : MonoBehaviour
 
     [Header("몬스터 공격수치")]
     public int monsterDamage = 5;
-    public int monsterAttackSpeed = 5;
+
+    [Header("게임 상태")]
+    public bool isGameClear = false;
 
     private void Awake()
     {

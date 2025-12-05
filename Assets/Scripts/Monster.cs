@@ -9,11 +9,14 @@ public class Monster : MonoBehaviour
     Animator animator;
     Rigidbody2D rigid;
     PlayerHP playerHP;
+    SpriteRenderer spriteRenderer;
+
   void Start()
     {
         animator = GetComponent<Animator>();
         rigid = GetComponent<Rigidbody2D>();
         monsterHP = GetComponent<MonsterHP>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
 
         // 5초뒤 움직일 값 설정
         Invoke("Think", 5);
@@ -44,7 +47,11 @@ public class Monster : MonoBehaviour
 
             // 애니메이션 설정 및 좌우 반전
             animator.SetInteger("State", 1);
-            transform.localScale = new Vector3(-nextmove * 3, 3, 3);
+
+            if (nextmove > 0)
+                spriteRenderer.flipX = true; // 오른쪽
+            else
+                spriteRenderer.flipX = false;  // 왼쪽
         }
         else
         {

@@ -11,9 +11,8 @@ public class MonsterHP : MonoBehaviour
     public GameObject hpUI;
     public Slider hpSlider;
 
-    
     [Header("HP UI 위치 오프셋(몬스터 기준)")]
-    public Vector3 uiOffset = new Vector3(0, 1.5f, 0);   // 머리 위로 띄울 거리
+    public Vector3 uiOffset = new Vector3(0, 0.25f, 0);   // 머리 위로 띄울 거리
 
     void Start()
     {

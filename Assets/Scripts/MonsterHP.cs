@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
@@ -7,20 +7,32 @@ public class MonsterHP : MonoBehaviour
     public int monsterHP;
     public int maxHP;
 
-    [Header("¸ó½ºÅÍ HP UI")]
+    [Header("ëª¬ìŠ¤í„° HP UI")]
+    public GameObject hpUI;
     public Slider hpSlider;
-    public TextMeshProUGUI hpText;
+
+    
+    [Header("HP UI ìœ„ì¹˜ ì˜¤í”„ì…‹(ëª¬ìŠ¤í„° ê¸°ì¤€)")]
+    public Vector3 uiOffset = new Vector3(0, 1.5f, 0);   // ë¨¸ë¦¬ ìœ„ë¡œ ë„ìš¸ ê±°ë¦¬
+
     void Start()
     {
         monsterHP = GameManager.Instance.monsterHP;
         maxHP = monsterHP;
 
-        // HP ½½¶óÀÌ´õ ÃÊ±â ¼¼ÆÃ
+        // HP ìŠ¬ë¼ì´ë” ì´ˆê¸° ì„¤ì •
         if (hpSlider != null)
         {
             hpSlider.minValue = 0;
             hpSlider.maxValue = maxHP;
             hpSlider.value = monsterHP;
+        }
+        // ì²˜ìŒ hpUI ìˆ¨ê¸°ê¸°
+        if (hpUI != null)
+        {
+            hpUI.SetActive(false);
+
+            hpUI.transform.localPosition = uiOffset;
         }
 
         UpdateUI();
@@ -29,7 +41,6 @@ public class MonsterHP : MonoBehaviour
     void Update()
     {
         monsterHP = GameManager.Instance.monsterHP;
-
         UpdateUI();
     }
 
@@ -39,17 +50,17 @@ public class MonsterHP : MonoBehaviour
         {
             hpSlider.value = monsterHP;
         }
-
-        if (hpText != null)
-        {
-            hpText.text = monsterHP + "/" + maxHP;
-        }
     }
 
-
-    // µ¥¹ÌÁö ¹Ş¾ÒÀ» ¶§ ·ÎÁ÷
+    // ë°ë¯¸ì§€ ë°›ì•˜ì„ ë•Œ í˜¸ì¶œ
     public void TakeDamage(int Damage)
     {
+        // hpUI í™œì„±í™”
+        if (hpUI != null && !hpUI.activeSelf)
+        {
+            hpUI.SetActive(true);
+        }
+
         if (GameManager.Instance.monsterHP < 0)
         {
             GameManager.Instance.monsterHP = 0;

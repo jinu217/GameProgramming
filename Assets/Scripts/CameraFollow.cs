@@ -9,7 +9,7 @@ public class CameraFollow : MonoBehaviour
     void Start()
     {
         // offset 값을 카메라 z값과 동일하게 설정
-        offset = new Vector3(0, 0, transform.position.z);
+        offset = new Vector3(0, 1, transform.position.z);
     }
     void LateUpdate()
     {

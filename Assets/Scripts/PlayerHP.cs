@@ -4,6 +4,7 @@ using TMPro;
 
 public class PlayerHP : MonoBehaviour
 {
+    Player player;
     public int playerHP;
     public int maxHP;
 
@@ -12,6 +13,7 @@ public class PlayerHP : MonoBehaviour
     public TextMeshProUGUI hpText;
     void Start()
     {
+        player = GetComponent<Player>();
         playerHP = GameManager.Instance.playerHP;
         maxHP = playerHP;
 
@@ -56,7 +58,7 @@ public class PlayerHP : MonoBehaviour
         }
         if (GameManager.Instance.playerHP == 0)
         {
-            return;
+            player.Die();
         }        
         if (GameManager.Instance.playerHP > 0)
         {

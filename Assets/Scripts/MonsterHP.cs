@@ -6,6 +6,8 @@ public class MonsterHP : MonoBehaviour
 {
     public int monsterHP;
     public int maxHP;
+    Monster monster;
+
 
     [Header("몬스터 HP UI")]
     public GameObject hpUI;
@@ -16,6 +18,7 @@ public class MonsterHP : MonoBehaviour
 
     void Start()
     {
+        monster = GetComponent<Monster>();
         monsterHP = GameManager.Instance.monsterHP;
         maxHP = monsterHP;
 
@@ -66,7 +69,7 @@ public class MonsterHP : MonoBehaviour
         }
         if (GameManager.Instance.monsterHP == 0)
         {
-            return;
+            monster.Die();
         }
         if (GameManager.Instance.monsterHP > 0)
         {

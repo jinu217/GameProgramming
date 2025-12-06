@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Flat
   - Monster
+  - Item
   layers:
   - Default
   - TransparentFX
@@ -16,7 +17,7 @@ TagManager:
   - Flat
   - Player
   - PlayerDamaged
-  - 
+  - Item
   - 
   - 
   - 

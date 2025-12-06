@@ -5,7 +5,7 @@ public class Player : MonoBehaviour
     // 변수 선언
     public float jumpForce = 100.0f;
     public float walkForce = 2.0f;
-    bool isflat = false; 
+    bool isflat = false;
 
     // 컴포넌트 선언
     Rigidbody2D rigid;
@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
     SpriteRenderer spriteRenderer;
     ArrowGenerator arrow;
     Animator animator;
+    Item item;
 
     void Start()
     {
@@ -32,7 +33,6 @@ public class Player : MonoBehaviour
 
             return;
         }
-
         Move();        
         if (Input.GetButtonDown("Jump") && isflat)
         {
@@ -41,6 +41,10 @@ public class Player : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Q))
         {
             Attack();
+        }
+        if(Input.GetKeyDown(KeyCode.E) && item != null)
+        {
+            item.Use();
         }
         //Debug.Log(isflat);
     }
@@ -116,6 +120,31 @@ public class Player : MonoBehaviour
         {
             isflat = true;
             animator.SetBool("isflat", isflat);
+        }
+    }
+
+    public void Die()
+    {
+        animator.SetBool("isdead", true);
+        Destroy(gameObject);
+    }
+
+
+    // 아이템과 닿았을 때
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == "Item")
+        {
+            item = collision.GetComponent<Item>();
+        }
+    }
+
+    // 아이템과 멀어졌을 때
+     void OnTriggerExit2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == "Item")
+        {
+            item = null; 
         }
     }
 }

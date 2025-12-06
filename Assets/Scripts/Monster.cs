@@ -10,6 +10,7 @@ public class Monster : MonoBehaviour
     Rigidbody2D rigid;
     PlayerHP playerHP;
     SpriteRenderer spriteRenderer;
+    GameObject item;
 
   void Start()
     {
@@ -45,8 +46,8 @@ public class Monster : MonoBehaviour
                 Invoke("Think", 5);
             }
 
-            // 애니메이션 설정 및 좌우 반전
             animator.SetInteger("State", 1);
+            // 애니메이션 설정 및 좌우 반전
 
             if (nextmove > 0)
                 spriteRenderer.flipX = true; // 오른쪽
@@ -72,10 +73,8 @@ public class Monster : MonoBehaviour
         monsterHP.TakeDamage(damage);
 
         //튕기는 방향
-        rigid.AddForce(new Vector2(dir, 0.2f) * 2, ForceMode2D.Impulse);
+        rigid.AddForce(new Vector2(dir, 0.1f) * 2, ForceMode2D.Impulse);
     }
-
-
 
     void OnCollisionStay2D(Collision2D collision)
     {
@@ -87,5 +86,13 @@ public class Monster : MonoBehaviour
             int dirc = (collision.transform.position.x - transform.position.x > 0 ? 1 : -1);
             player.PlayerOnHit(GameManager.Instance.monsterDamage, dirc);
         }
+    }
+
+
+    
+    public void Die()
+    {
+        animator.SetBool("isdead", true);
+        Destroy(gameObject);
     }
 }

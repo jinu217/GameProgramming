@@ -13,7 +13,6 @@ public class Player : MonoBehaviour
     SpriteRenderer spriteRenderer;
     ArrowGenerator arrow;
     Animator animator;
-    Item item;
 
     void Start()
     {
@@ -42,11 +41,6 @@ public class Player : MonoBehaviour
         {
             Attack();
         }
-        if(Input.GetKeyDown(KeyCode.E) && item != null)
-        {
-            item.Use();
-        }
-        //Debug.Log(isflat);
     }
 
     //이동 함수들
@@ -127,24 +121,5 @@ public class Player : MonoBehaviour
     {
         animator.SetBool("isdead", true);
         Destroy(gameObject);
-    }
-
-
-    // 아이템과 닿았을 때
-    void OnTriggerEnter2D(Collider2D collision)
-    {
-        if(collision.gameObject.tag == "Item")
-        {
-            item = collision.GetComponent<Item>();
-        }
-    }
-
-    // 아이템과 멀어졌을 때
-     void OnTriggerExit2D(Collider2D collision)
-    {
-        if(collision.gameObject.tag == "Item")
-        {
-            item = null; 
-        }
     }
 }

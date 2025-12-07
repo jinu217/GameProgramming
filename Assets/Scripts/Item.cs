@@ -2,11 +2,11 @@
 
 public class Item : MonoBehaviour
 {
-    public float value;
+    public int value;
 
     public void Use()
     {
-
+        GameManager.Instance.playerHP += value;
         Destroy(gameObject);
     }
 }

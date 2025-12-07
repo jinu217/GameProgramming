@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Unity.Multiplayer.Center.Common;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class Monster : MonoBehaviour
@@ -9,8 +10,9 @@ public class Monster : MonoBehaviour
     Animator animator;
     Rigidbody2D rigid;
     PlayerHP playerHP;
-    SpriteRenderer spriteRenderer;
-    GameObject item;
+    SpriteRenderer spriteRenderer;    
+    
+    public GameObject [] item;
 
   void Start()
     {
@@ -90,9 +92,16 @@ public class Monster : MonoBehaviour
 
 
     
+    // 죽음 애니메이션 & 아이템 드랍
     public void Die()
-    {
+    {        
         animator.SetBool("isdead", true);
+
+        //아이템 드랍
+        int i = Random.Range(0, item.Length);
+        GameObject selectedItem = item[i];
+        Instantiate(selectedItem, transform.position, Quaternion.identity);
+
         Destroy(gameObject);
     }
 }

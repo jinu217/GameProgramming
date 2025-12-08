@@ -754,6 +754,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4280109568045275639, guid: 961a4b365bc26ca488f51008cea61923, type: 3}
+      propertyPath: m_Size.x
+      value: 0.37168396
+      objectReference: {fileID: 0}
+    - target: {fileID: 4280109568045275639, guid: 961a4b365bc26ca488f51008cea61923, type: 3}
+      propertyPath: m_Size.y
+      value: 0.20749494
+      objectReference: {fileID: 0}
+    - target: {fileID: 4280109568045275639, guid: 961a4b365bc26ca488f51008cea61923, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.004682988
+      objectReference: {fileID: 0}
+    - target: {fileID: 4280109568045275639, guid: 961a4b365bc26ca488f51008cea61923, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.022859719
+      objectReference: {fileID: 0}
     - target: {fileID: 4768142002801675961, guid: 961a4b365bc26ca488f51008cea61923, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -765,6 +781,10 @@ PrefabInstance:
     - target: {fileID: 7101164365855029773, guid: 961a4b365bc26ca488f51008cea61923, type: 3}
       propertyPath: m_Layer
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8651245213337244216, guid: 961a4b365bc26ca488f51008cea61923, type: 3}
+      propertyPath: speed
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1715,6 +1735,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4280109568045275639, guid: baf981b5b5f1ac54ca185ab359494045, type: 3}
+      propertyPath: m_Size.y
+      value: 0.41111144
+      objectReference: {fileID: 0}
+    - target: {fileID: 4280109568045275639, guid: baf981b5b5f1ac54ca185ab359494045, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.01101844
+      objectReference: {fileID: 0}
     - target: {fileID: 4768142002801675961, guid: baf981b5b5f1ac54ca185ab359494045, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1726,6 +1754,14 @@ PrefabInstance:
     - target: {fileID: 7101164365855029773, guid: baf981b5b5f1ac54ca185ab359494045, type: 3}
       propertyPath: m_Layer
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8651245213337244216, guid: baf981b5b5f1ac54ca185ab359494045, type: 3}
+      propertyPath: speed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8651245213337244216, guid: baf981b5b5f1ac54ca185ab359494045, type: 3}
+      propertyPath: nextmove
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

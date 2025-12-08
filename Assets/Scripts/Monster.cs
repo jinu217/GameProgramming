@@ -1,10 +1,12 @@
-﻿using Unity.Multiplayer.Center.Common;
+﻿using System.Collections;
+using Unity.Multiplayer.Center.Common;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class Monster : MonoBehaviour
 {
     public int nextmove;
+    public int speed;
 
     MonsterHP monsterHP;
     Animator animator;
@@ -34,8 +36,8 @@ public class Monster : MonoBehaviour
     {
         if (nextmove != 0)
         {
-            
-            rigid.linearVelocity = new Vector2(nextmove, rigid.linearVelocity.y);
+            animator.SetInteger("State", 1);
+            rigid.linearVelocity = new Vector2(nextmove * speed, rigid.linearVelocity.y);
 
             // 몬스터 약간 앞쪽 Flat 감지 null 값일 때 방향 바꿈
             Vector2 frontVec = new Vector2(rigid.position.x + nextmove, rigid.position.y);            
@@ -48,7 +50,6 @@ public class Monster : MonoBehaviour
                 Invoke("Think", 5);
             }
 
-            animator.SetInteger("State", 1);
             // 애니메이션 설정 및 좌우 반전
 
             if (nextmove > 0)
@@ -71,12 +72,22 @@ public class Monster : MonoBehaviour
 
     public void MonsterOnHit(int damage, int dir)
     {
+        //튕기는 방향
+        rigid.AddForce(new Vector2(dir, 0.1f) * 1.5f, ForceMode2D.Impulse);
         // 데미지 실제 적용
         monsterHP.TakeDamage(damage);
-
-        //튕기는 방향
-        rigid.AddForce(new Vector2(dir, 0.1f) * 2, ForceMode2D.Impulse);
+        int currentState = animator.GetInteger("State");
+        StartCoroutine(OnHitAnim());
     }
+
+    IEnumerator OnHitAnim()
+    {
+        CancelInvoke();
+        animator.SetTrigger("ishit");
+        yield return new WaitForSeconds(1f);
+        Think();
+    }
+
 
     void OnCollisionStay2D(Collision2D collision)
     {
@@ -89,7 +100,6 @@ public class Monster : MonoBehaviour
             player.PlayerOnHit(GameManager.Instance.monsterDamage, dirc);
         }
     }
-
 
     
     // 죽음 애니메이션 & 아이템 드랍

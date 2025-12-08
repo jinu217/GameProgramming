@@ -47,5 +47,13 @@ public class Arrow : MonoBehaviour
             monster.MonsterOnHit(GameManager.Instance.playerDamage, dirc);
             Destroy(gameObject);
         }
+        if(collision.gameObject.tag == "Player")
+        {
+            return;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 }

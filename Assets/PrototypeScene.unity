@@ -130,7 +130,6 @@ GameObject:
   - component: {fileID: 70770456}
   - component: {fileID: 70770455}
   - component: {fileID: 70770454}
-  - component: {fileID: 70770457}
   - component: {fileID: 70770453}
   m_Layer: 0
   m_Name: Box
@@ -282,19 +281,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &70770457
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 70770452}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fbab32a272ef74343a2b254123bfe4a6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  value: 0
 --- !u!1 &127263898
 GameObject:
   m_ObjectHideFlags: 0
@@ -877,7 +863,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cfea8ef6a1fcd74780b7916757fe15b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 0.5
+  radius: 1
+  distance: 1
   itemLayer:
     serializedVersion: 2
     m_Bits: 512
@@ -936,6 +923,10 @@ PrefabInstance:
     - target: {fileID: 7101164365855029773, guid: 961a4b365bc26ca488f51008cea61923, type: 3}
       propertyPath: m_Name
       value: Turtle
+      objectReference: {fileID: 0}
+    - target: {fileID: 7101164365855029773, guid: 961a4b365bc26ca488f51008cea61923, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8368,6 +8359,10 @@ PrefabInstance:
     - target: {fileID: 7101164365855029773, guid: baf981b5b5f1ac54ca185ab359494045, type: 3}
       propertyPath: m_Name
       value: Bunny
+      objectReference: {fileID: 0}
+    - target: {fileID: 7101164365855029773, guid: baf981b5b5f1ac54ca185ab359494045, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

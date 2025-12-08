@@ -4,7 +4,8 @@ public class PlayerRayCast : MonoBehaviour
 {
 
     // circle 반지름 크기
-    public float radius = 0.5f;
+    public float radius = 1.0f;
+    public float distance = 1.0f;
     public LayerMask itemLayer;
 
 
@@ -26,7 +27,7 @@ public class PlayerRayCast : MonoBehaviour
         }
 
         // 원 방향으로 Ray itemLayer만 인식
-        RaycastHit2D hit = Physics2D.CircleCast(transform.position,  radius, dir, itemLayer);
+        RaycastHit2D hit = Physics2D.CircleCast(transform.position,  radius,  dir, distance, itemLayer);
 
         // 아이템 인식
         if (hit.collider != null)

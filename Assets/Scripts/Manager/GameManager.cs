@@ -11,9 +11,6 @@ public class GameManager : MonoBehaviour
     public int playerDamage = 10;
     public int playerAttackSpeed = 10;
 
-    [Header("몬스터 HP")]
-    public int monsterHP = 100;
-
     [Header("몬스터 공격수치")]
     public int monsterDamage = 5;
 

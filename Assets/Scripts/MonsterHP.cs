@@ -4,10 +4,11 @@ using TMPro;
 
 public class MonsterHP : MonoBehaviour
 {
-    public int monsterHP;
-    public int maxHP;
     Monster monster;
 
+    [Header("몬스터 HP")]
+    public int maxHP = 100;
+    public int monsterHP;
 
     [Header("몬스터 HP UI")]
     public GameObject hpUI;
@@ -19,8 +20,7 @@ public class MonsterHP : MonoBehaviour
     void Start()
     {
         monster = GetComponent<Monster>();
-        monsterHP = GameManager.Instance.monsterHP;
-        maxHP = monsterHP;
+        monsterHP = maxHP;
 
         // HP 슬라이더 초기 설정
         if (hpSlider != null)
@@ -42,7 +42,6 @@ public class MonsterHP : MonoBehaviour
 
     void Update()
     {
-        monsterHP = GameManager.Instance.monsterHP;
         UpdateUI();
     }
 
@@ -63,17 +62,17 @@ public class MonsterHP : MonoBehaviour
             hpUI.SetActive(true);
         }
 
-        if (GameManager.Instance.monsterHP < 0)
+        if (monsterHP < 0)
         {
-            GameManager.Instance.monsterHP = 0;
+            monsterHP = 0;
         }
-        if (GameManager.Instance.monsterHP == 0)
+        if (monsterHP == 0)
         {
             monster.Die();
         }
-        if (GameManager.Instance.monsterHP > 0)
+        if (monsterHP > 0)
         {
-            GameManager.Instance.monsterHP -= Damage;
+            monsterHP -= Damage;
         }
     }
 }

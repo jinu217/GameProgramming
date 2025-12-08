@@ -290,7 +290,7 @@ GameObject:
   - component: {fileID: 8651245213337244216}
   - component: {fileID: 3819664537933421096}
   - component: {fileID: -4493466324134475659}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Turtle
   m_TagString: Monster
   m_Icon: {fileID: 0}
@@ -402,7 +402,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.005, y: -0.029}
+  m_Offset: {x: 0.004682988, y: -0.022859719}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -412,7 +412,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.32, y: 0.21}
+  m_Size: {x: 0.37168396, y: 0.20749494}
   m_EdgeRadius: 0
 --- !u!50 &237417833345438434
 Rigidbody2D:
@@ -454,6 +454,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nextmove: 0
+  speed: 1
   item:
   - {fileID: 7203688819538194291, guid: 98e03ee0202074b45ac50727ec209055, type: 3}
   - {fileID: 7244390587792253549, guid: f17ed3d6ff2fb204086b7bddb156bc30, type: 3}

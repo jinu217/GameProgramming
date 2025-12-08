@@ -6,7 +6,8 @@ using UnityEngine.InputSystem;
 public class Monster : MonoBehaviour
 {
     public int nextmove;
-    public int speed;
+    public float speed;
+    public int monsterDamage;
 
     MonsterHP monsterHP;
     Animator animator;
@@ -97,7 +98,7 @@ public class Monster : MonoBehaviour
             Player player = collision.gameObject.GetComponent<Player>();
             // 피격 방향 Player 위치 - monster 위치 뺀 값이 0보다 크면 1,  0보다 작으면 -1  
             int dirc = (collision.transform.position.x - transform.position.x > 0 ? 1 : -1);
-            player.PlayerOnHit(GameManager.Instance.monsterDamage, dirc);
+            player.PlayerOnHit(monsterDamage, dirc);
         }
     }
 

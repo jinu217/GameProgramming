@@ -110,7 +110,7 @@ public class Player : MonoBehaviour
     // 무한 점프 방지, 바닥과 닿아야 점프 가능
     void OnCollisionEnter2D(Collision2D collision) 
     {
-        if (collision.gameObject.tag == "Flat")
+        if (collision.gameObject.tag == "Flat" & collision.contacts[0].normal.y == 1)
         {
             isflat = true;
             animator.SetBool("isflat", isflat);

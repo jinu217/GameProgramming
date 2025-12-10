@@ -454,11 +454,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nextmove: 0
-  speed: 1
+  speed: 0.7
+  monsterDamage: 20
   item:
   - {fileID: 7203688819538194291, guid: 98e03ee0202074b45ac50727ec209055, type: 3}
   - {fileID: 7244390587792253549, guid: f17ed3d6ff2fb204086b7bddb156bc30, type: 3}
-  - {fileID: 4517490076257884917, guid: 2e7e250cd2d05364cac7bfb2c05315e7, type: 3}
 --- !u!95 &3819664537933421096
 Animator:
   serializedVersion: 7

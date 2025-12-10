@@ -41,13 +41,23 @@ public class Monster : MonoBehaviour
             rigid.linearVelocity = new Vector2(nextmove * speed, rigid.linearVelocity.y);
 
             // 몬스터 약간 앞쪽 Flat 감지 null 값일 때 방향 바꿈
-            Vector2 frontVec = new Vector2(rigid.position.x + nextmove, rigid.position.y);            
+            Vector2 frontVec = new Vector2(rigid.position.x + (nextmove * 0.2f), rigid.position.y);            
             RaycastHit2D rayHit = Physics2D.Raycast(frontVec, Vector3.down, 1, LayerMask.GetMask("Flat"));
+            RaycastHit2D BoxrayHit = Physics2D.Raycast(frontVec, Vector3.right, 1, LayerMask.GetMask("Box"));
+
+
             if (rayHit.collider == null)
             {
                 nextmove = nextmove * -1;
                 //Invoke 카운트 초기화
                 CancelInvoke();                
+                Invoke("Think", 5);
+            }
+            else if (BoxrayHit.collider != null && BoxrayHit.collider.CompareTag("Box"))
+            {
+                nextmove = nextmove * -1;
+                //Invoke 카운트 초기화
+                CancelInvoke();
                 Invoke("Think", 5);
             }
 

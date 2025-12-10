@@ -4,7 +4,9 @@ public class Player : MonoBehaviour
 {
     // 변수 선언
     public float jumpForce = 100.0f;
-    public float walkForce = 2.0f;
+    public float walkForce = 2.0f;    
+    public float attackSpeed = 0.5f;
+    float time;
     bool isflat = false;
 
     // 컴포넌트 선언
@@ -37,9 +39,16 @@ public class Player : MonoBehaviour
         {
             Jump();
         }
-        if(Input.GetKeyDown(KeyCode.Q))
+
+        // 공격 속도 재장전
+        if(time > 0)
+        {
+            time -= Time.deltaTime;
+        }
+        if(Input.GetKeyDown(KeyCode.Q) && time <= 0)
         {
             Attack();
+            time = attackSpeed;
         }
     }
 
@@ -110,7 +119,12 @@ public class Player : MonoBehaviour
     // 무한 점프 방지, 바닥과 닿아야 점프 가능
     void OnCollisionEnter2D(Collision2D collision) 
     {
-        if (collision.gameObject.tag == "Flat" & collision.contacts[0].normal.y == 1)
+        if (collision.gameObject.tag == "Flat" & collision.contacts[0].normal.y > 0.9f)
+        {
+            isflat = true;
+            animator.SetBool("isflat", isflat);
+        }
+        if(collision.gameObject.tag == "Box")
         {
             isflat = true;
             animator.SetBool("isflat", isflat);

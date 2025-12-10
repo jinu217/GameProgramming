@@ -521,9 +521,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nextmove: 0
   speed: 1
-  monsterDamage: 15
+  monsterDamage: 35
   item:
-  - {fileID: 7203688819538194291, guid: 98e03ee0202074b45ac50727ec209055, type: 3}
   - {fileID: 7244390587792253549, guid: f17ed3d6ff2fb204086b7bddb156bc30, type: 3}
 --- !u!95 &4458032204773224189
 Animator:
@@ -559,7 +558,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a6eb6004b972a64193e32d9a9724ca8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHP: 150
+  maxHP: 120
   monsterHP: 0
   hpUI: {fileID: 1690726813291678337}
   hpSlider: {fileID: 1399418946756833594}

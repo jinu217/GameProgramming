@@ -183,6 +183,7 @@ MonoBehaviour:
   monsterDamage: 10
   item:
   - {fileID: 7203688819538194291, guid: 98e03ee0202074b45ac50727ec209055, type: 3}
+  - {fileID: 4517490076257884917, guid: 2e7e250cd2d05364cac7bfb2c05315e7, type: 3}
 --- !u!95 &9002849838872617528
 Animator:
   serializedVersion: 7
@@ -217,7 +218,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a6eb6004b972a64193e32d9a9724ca8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHP: 150
+  maxHP: 40
   monsterHP: 0
   hpUI: {fileID: 2241078949606614551}
   hpSlider: {fileID: 3412830276246755752}

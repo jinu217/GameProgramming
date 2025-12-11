@@ -11470,7 +11470,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jumpForce: 320
   walkForce: 3
-  attackSpeed: 0.5
+  attackSpeed: 0.3
 --- !u!61 &715484658
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -80100,7 +80100,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c914aa9568cdf14f83559ce0596a9fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rigid: {fileID: 0}
 --- !u!1001 &2029974588
 PrefabInstance:
   m_ObjectHideFlags: 0

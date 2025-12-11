@@ -43,26 +43,24 @@ public class Monster : MonoBehaviour
             // 몬스터 약간 앞쪽 Flat 감지 null 값일 때 방향 바꿈
             Vector2 frontVec = new Vector2(rigid.position.x + (nextmove * 0.2f), rigid.position.y);            
             RaycastHit2D rayHit = Physics2D.Raycast(frontVec, Vector3.down, 1, LayerMask.GetMask("Flat"));
-            RaycastHit2D BoxrayHit = Physics2D.Raycast(frontVec, Vector3.right, 1, LayerMask.GetMask("Box"));
+            RaycastHit2D BoxrayHit_right = Physics2D.Raycast(frontVec, Vector3.right, 0.5f, LayerMask.GetMask("Box"));
+            RaycastHit2D BoxrayHit_left = Physics2D.Raycast(frontVec, Vector3.left, 0.5f, LayerMask.GetMask("Box"));
 
+            
 
             if (rayHit.collider == null)
             {
-                nextmove = nextmove * -1;
-                //Invoke 카운트 초기화
-                CancelInvoke();                
-                Invoke("Think", 5);
+                Changemove();
             }
-            else if (BoxrayHit.collider != null && BoxrayHit.collider.CompareTag("Box"))
+            if (BoxrayHit_right.collider != null && BoxrayHit_right.collider.CompareTag("Box"))
             {
-                nextmove = nextmove * -1;
-                //Invoke 카운트 초기화
-                CancelInvoke();
-                Invoke("Think", 5);
+                Changemove();
             }
-
+            if (BoxrayHit_left.collider != null && BoxrayHit_left.collider.CompareTag("Box"))
+            {
+                Changemove();
+            }
             // 애니메이션 설정 및 좌우 반전
-
             if (nextmove > 0)
                 spriteRenderer.flipX = true; // 오른쪽
             else
@@ -78,6 +76,15 @@ public class Monster : MonoBehaviour
     void Think()
     {
         nextmove = Random.Range(-1, 2);
+        Invoke("Think", 5);
+    }
+
+    // 방향을 바꾸고, 다시 움직임 로직 실행
+    void Changemove()
+    {
+        nextmove = nextmove * -1;
+        //Invoke 카운트 초기화
+        CancelInvoke();
         Invoke("Think", 5);
     }
 
@@ -98,6 +105,7 @@ public class Monster : MonoBehaviour
         yield return new WaitForSeconds(1f);
         Think();
     }
+
 
 
     void OnCollisionStay2D(Collision2D collision)

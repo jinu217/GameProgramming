@@ -26,29 +26,12 @@ public class Player : MonoBehaviour
     }
     void Update()
     {
-        // gameclear 시 움직임 정지
-        if (GameManager.Instance != null && GameManager.Instance.isGameClear)
-        {
-            Rigidbody2D rb = GetComponent<Rigidbody2D>();
-            if (rb != null) rb.linearVelocity = Vector2.zero;
 
-            return;
-        }
-        Move();        
+        Move();
+        AttackSpeed();
         if (Input.GetButtonDown("Jump") && isflat)
         {
             Jump();
-        }
-
-        // 공격 속도 재장전
-        if(time > 0)
-        {
-            time -= Time.deltaTime;
-        }
-        if(Input.GetKeyDown(KeyCode.Q) && time <= 0)
-        {
-            Attack();
-            time = attackSpeed;
         }
     }
 
@@ -131,9 +114,23 @@ public class Player : MonoBehaviour
         }
     }
 
+    void AttackSpeed()
+    {
+        // 공격 속도 재장전
+        if (time > 0)
+        {
+            time -= Time.deltaTime;
+        }
+        if (Input.GetKeyDown(KeyCode.Q) && time <= 0)
+        {
+            Attack();
+            time = attackSpeed;
+        }
+    }
+
+
     public void Die()
     {
-        animator.SetBool("isdead", true);
         Destroy(gameObject);
     }
 }

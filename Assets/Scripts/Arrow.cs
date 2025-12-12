@@ -32,7 +32,6 @@ public class Arrow : MonoBehaviour
         }
     }
 
-
     //화살이 몬스터와 접촉했을 때 데미지 전달
     void OnTriggerEnter2D(Collider2D collision)
     {
@@ -48,6 +47,10 @@ public class Arrow : MonoBehaviour
             Destroy(gameObject);
         }
         if(collision.gameObject.tag == "Player")
+        {
+            return;
+        }
+        if(collision.gameObject.tag == "Item")
         {
             return;
         }

@@ -94,7 +94,6 @@ public class Monster : MonoBehaviour
         rigid.AddForce(new Vector2(dir, 0.1f) * 1.5f, ForceMode2D.Impulse);
         // 데미지 실제 적용
         monsterHP.TakeDamage(damage);
-        int currentState = animator.GetInteger("State");
         StartCoroutine(OnHitAnim());
     }
 

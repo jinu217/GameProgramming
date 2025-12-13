@@ -68,9 +68,13 @@ public class PlayerHP : MonoBehaviour
     // Player의 HP가 최대를 넘을 경우, maxHP로 동기화
     void MaxHP()
     {
-        if(GameManager.Instance.playerHP > maxHP)
+        if (GameManager.Instance.playerHP > maxHP)
         {
             GameManager.Instance.playerHP = maxHP;
+        }
+        if (GameManager.Instance.playerHP <= 0)
+        {
+            player.Die();
         }
     }
 }

@@ -24,14 +24,13 @@ public class PlayerHP : MonoBehaviour
             hpSlider.maxValue = maxHP;
             hpSlider.value = playerHP;
         }
-
         UpdateUI();
     }
 
     void Update()
     {
         playerHP = GameManager.Instance.playerHP;
-
+        MaxHP();
         UpdateUI();
     }
 
@@ -63,6 +62,15 @@ public class PlayerHP : MonoBehaviour
         if (GameManager.Instance.playerHP > 0)
         {
             GameManager.Instance.playerHP -= Damage;
+        }
+    }
+
+    // Player의 HP가 최대를 넘을 경우, maxHP로 동기화
+    void MaxHP()
+    {
+        if(GameManager.Instance.playerHP > maxHP)
+        {
+            GameManager.Instance.playerHP = maxHP;
         }
     }
 }

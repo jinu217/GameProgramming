@@ -16,6 +16,13 @@ public class Player : MonoBehaviour
     ArrowGenerator arrow;
     Animator animator;
 
+    enum EnumStates
+    {
+        Idle = 0,
+        Walk = 1
+    }
+
+
     void Start()
     {
         rigid = GetComponent<Rigidbody2D>();
@@ -38,29 +45,18 @@ public class Player : MonoBehaviour
     //이동 함수들
     void Move()
     {
-        float key = 0;
         float x = Input.GetAxisRaw("Horizontal");
-        // Debug.Log("x값 " + x);
+        rigid.linearVelocity = new Vector2(x * walkForce, rigid.linearVelocity.y);
 
-        //Player local Scale의 연동
-        key = x * 3;
-        if(x != 0)
+        if (x != 0)
         {
-            rigid.linearVelocity = new Vector2(x * walkForce, rigid.linearVelocity.y);
-            // 걷기 애니메이션
-            animator.SetInteger("State", 1);           
+            animator.SetInteger("State", (int)EnumStates.Walk);
+            spriteRenderer.flipX = (x < 0);
         }
         else
         {
-            // 멈출 때 idel 애니메이션
             animator.SetInteger("State", 0);
         }       
-
-        // 스프레이트 좌우 반전
-        if(key != 0)
-        {
-            transform.localScale = new Vector3(key, 3, 3);
-        }
     }
     void Jump()
     {
